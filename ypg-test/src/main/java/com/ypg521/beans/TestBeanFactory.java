@@ -1,6 +1,5 @@
-package com.ypg521.test;
+package com.ypg521.beans;
 
-import com.ypg521.beans.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
