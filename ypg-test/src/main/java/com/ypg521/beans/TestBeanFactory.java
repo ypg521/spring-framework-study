@@ -14,7 +14,7 @@ public class TestBeanFactory {
 	@Test
 	public void testXmlBeanFactory() {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(factory).loadBeanDefinitions("User.xml");
+		new XmlBeanDefinitionReader(factory).loadBeanDefinitions("beans/User.xml");
 		User user = (User) factory.getBean("user");
 		Assert.assertTrue(user != null);
 	}
