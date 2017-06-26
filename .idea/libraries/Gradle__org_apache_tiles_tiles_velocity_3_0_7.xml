@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.tiles:tiles-velocity:3.0.7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tiles/tiles-velocity/3.0.7/27b0d4a812a2568179f5a6eaf58383eecb432003/tiles-velocity-3.0.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tiles/tiles-velocity/3.0.7/79be20024985782dbef783dee2b71a279dd91781/tiles-velocity-3.0.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

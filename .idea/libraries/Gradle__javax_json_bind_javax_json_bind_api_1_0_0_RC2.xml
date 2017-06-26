@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: javax.json.bind:javax.json.bind-api:1.0.0-RC2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.json.bind/javax.json.bind-api/1.0.0-RC2/878538bc224ee7091829c87b6593d0ea01757a01/javax.json.bind-api-1.0.0-RC2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.json.bind/javax.json.bind-api/1.0.0-RC2/1b9da44434e15e2093af3ac8132da240a7fca4bc/javax.json.bind-api-1.0.0-RC2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.terracotta:management-model:2.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.terracotta/management-model/2.0.0/33395f230191635bef21d620aca78670e0f51e82/management-model-2.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.terracotta/management-model/2.0.0/2c0419ed6881d6139691e1ed4c20d31ee504035c/management-model-2.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
