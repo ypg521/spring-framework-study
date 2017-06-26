@@ -1111,7 +1111,7 @@ project("spring-test") {
 
 	check.dependsOn aggregateTestReports
 }
-
+/*
 project("spring-aspects") {
 	description = "Spring Aspects"
 	apply from: "aspects.gradle"
@@ -1139,7 +1139,7 @@ project("spring-aspects") {
 		natures += "org.eclipse.ajdt.ui.ajnature"
 		buildCommands = [new org.gradle.plugins.ide.eclipse.model.BuildCommand("org.eclipse.ajdt.core.ajbuilder")]
 	}
-}
+}*/
 
 project("spring-framework-bom") {
 	description = "Spring Framework (Bill of Materials)"
