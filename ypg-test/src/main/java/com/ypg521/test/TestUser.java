@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestUser {
 	@Test
 	public void test() {
-		ApplicationContext ac = new ClassPathXmlApplicationContext("User.xml");
+		ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("User.xml");
 		Object user = ac.getBean("user");
 		Assert.assertTrue(user != null);
 
