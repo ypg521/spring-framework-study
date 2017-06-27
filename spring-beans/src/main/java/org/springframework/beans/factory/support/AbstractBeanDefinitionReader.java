@@ -51,11 +51,11 @@ public abstract class AbstractBeanDefinitionReader implements EnvironmentCapable
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private final BeanDefinitionRegistry registry;
-
+//PathMatchingResourcePatternResolver
 	private ResourceLoader resourceLoader;
 
 	private ClassLoader beanClassLoader;
-
+//StandardEnvironment
 	private Environment environment;
 
 	private BeanNameGenerator beanNameGenerator = new DefaultBeanNameGenerator();
@@ -206,6 +206,7 @@ public abstract class AbstractBeanDefinitionReader implements EnvironmentCapable
 	 * @see #loadBeanDefinitions(org.springframework.core.io.Resource[])
 	 */
 	public int loadBeanDefinitions(String location, @Nullable Set<Resource> actualResources) throws BeanDefinitionStoreException {
+		// default PathMatchingResourcePatternResolver
 		ResourceLoader resourceLoader = getResourceLoader();
 		if (resourceLoader == null) {
 			throw new BeanDefinitionStoreException(

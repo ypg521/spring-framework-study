@@ -112,6 +112,7 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 	 */
 	@Override
 	public NamespaceHandler resolve(String namespaceUri) {
+		//这里扫描所有的resources/META-INF/spring.handlers ,key=namespaceUri ,value=NamespaceHandler 。达到自定义标签的目的
 		Map<String, Object> handlerMappings = getHandlerMappings();
 		Object handlerOrClassName = handlerMappings.get(namespaceUri);
 		if (handlerOrClassName == null) {
