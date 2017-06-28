@@ -10,9 +10,12 @@ repositories {
 }
 
 dependencies {
-//    compile(project(":spring-core"))
-//    compile(project(":spring-beans"))
+    compile(project(":spring-core"))
+    compile(project(":spring-beans"))
     compile(project(":spring-context"))
-//    compile(project(":spring-aop"))
+    compile(project(":spring-aop"))
+    compile(project(":spring-expression"))
     compile group: 'junit', name: 'junit', version: '4.12'
+    compile("org.aspectj:aspectjrt:${aspectjVersion}")
+    compile("org.aspectj:aspectjweaver:${aspectjVersion}")
 }

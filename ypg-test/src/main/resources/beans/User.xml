@@ -12,7 +12,12 @@
 
 	<alias name="user" alias="u1"></alias>
 
-
 	<bean id="prototypeUser" class="com.ypg521.beans.User" scope="prototype"></bean>
 
+	<bean id="demoFactoryBean" class="com.ypg521.beans.DemoFactoryBean">
+	</bean>
+
+	<bean id="demoServer" class="com.ypg521.beans.DemoServer">
+		<property name="user" ref="user"></property>
+	</bean>
 </beans>

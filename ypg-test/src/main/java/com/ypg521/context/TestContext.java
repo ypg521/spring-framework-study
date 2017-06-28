@@ -2,7 +2,9 @@ package com.ypg521.context;
 
 import com.ypg521.context.beans.annotation.service.Service1;
 import com.ypg521.context.beans.annotation.service.Service2;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,14 +13,27 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class TestContext {
 
+	private ClassPathXmlApplicationContext context;
+
+	@Before
+	public void doBefore() {
+		System.out.println("init context");
+		context = new ClassPathXmlApplicationContext("context/application.xml");
+	}
+
+	@After
+	public void doAfter() {
+		System.out.println("test done");
+	}
+
 	@Test
 	public void test() {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context/application.xml");
+
 		Service1 service1 = (Service1) context.getBean("service1");
 		Assert.assertTrue(service1 != null);
 		service1.prototypeSay();
 		service1.singletonSay();
-        System.out.println("---------------------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------");
 
 		service1 = (Service1) context.getBean("service1");
 		Assert.assertTrue(service1 != null);
