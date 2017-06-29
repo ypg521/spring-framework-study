@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -17,6 +18,19 @@ public class TestContext {
 
 	@Before
 	public void doBefore() {
+
+		/**
+		 * @see   org.springframework.beans.factory.support.AbstractBeanFactory.getBean(String name)
+		 *
+		 *new ClassPathXmlApplicationContext时调用了refresh()
+		 * 				 getBean("org.springframework.context.annotation.internalConfigurationAnnotationProcessor")
+		 *               getBean("org.springframework.context.annotation.internalAutowiredAnnotationProcessor")
+		 *               getBean("org.springframework.context.annotation.internalRequiredAnnotationProcessor")等处理注解的方法 貌似一共6个。
+		 *
+		 * 以上这些注解处理的bean是在package scan的时候 默认注册的,并且会将这些对象注册到Factory (addBeanPostProcessor)
+		 *
+		 *
+		 */
 		System.out.println("init context");
 		context = new ClassPathXmlApplicationContext("context/application.xml");
 	}
@@ -28,7 +42,10 @@ public class TestContext {
 
 	@Test
 	public void test() {
-
+		/**@see   org.springframework.beans.factory.support.AbstractBeanFactory.getBean(String name)
+		 *
+		 *
+		 * */
 		Service1 service1 = (Service1) context.getBean("service1");
 		Assert.assertTrue(service1 != null);
 		service1.prototypeSay();

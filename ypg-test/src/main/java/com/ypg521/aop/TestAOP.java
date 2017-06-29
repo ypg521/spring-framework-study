@@ -23,5 +23,12 @@ public class TestAOP {
 		demoService.say();
 	}
 
+	@Test
+	public void secondTest() {
+		//没有被切面包含、生成的是原生对象
+		NoAspectDemoService noAspectDemoService = (NoAspectDemoService) context.getBean("noAspectDemoService");
+		System.out.println(noAspectDemoService);
+		return;
+	}
 
 }

@@ -1,5 +1,16 @@
-####接口说明 
-* BeanFactory  例如 DefaultListableBeanFactory
-* BeanDefinitionRegistry 注册bean的描述信息(并不是对应的class对象)，PS：DefaultListableBeanFactory就是一个Registry
-* ResourceLoader 
-* Resource
+####BeanFactory 以DefaultListableBeanFactory为例
+实现的主要接口:
+* BeanFactory 工厂接口
+* BeanDefinitionRegistry,父接口AliasRegistry。表示一个注册bean信息、别名的容器
+
+主要的方法:
+
+* getBean(...)  各种获取bean,  接口BeanFactory定义
+* registerAlias(...) 注册别名
+* registerScope(String scopeName, Scope scope) 添加scope，可自定义,比如spring-web扩展的SessionScope
+* addBeanPostProcessor(BeanPostProcessor beanPostProcessor)
+
+
+
+
+

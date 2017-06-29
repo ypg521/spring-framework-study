@@ -19,6 +19,11 @@ public class TestBeanFactory {
 
 	@Before
 	public void doBefore() {
+		/**
+		 *
+		 *
+		 *
+		 * */
 		factory = new DefaultListableBeanFactory();
 		//返回 找到了多少 BeanDefinition
 		int loadBeanDefinitionsNumber = new XmlBeanDefinitionReader(factory).loadBeanDefinitions("beans/User.xml");
