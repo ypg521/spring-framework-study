@@ -7,14 +7,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Created by Administrator on 2017/6/28.
  */
-public class TestAOP {
+public class TestAop {
 
 	private ClassPathXmlApplicationContext context;
 
 	@Before
 	public void doBefore() {
 		System.out.println("init context");
-		context = new ClassPathXmlApplicationContext("aop/application.xml");
+		context = new ClassPathXmlApplicationContext("aop/aop.xml");
 	}
 
 	@Test

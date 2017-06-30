@@ -128,6 +128,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 			}
 		}
 		this.beanPostProcessors = filterPostProcessors(postProcessors, bean);
+		return;
 	}
 
 	/**

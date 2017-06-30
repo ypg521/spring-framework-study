@@ -235,7 +235,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 		final String beanName = transformedBeanName(name);
 		Object bean;
-		//TODO 特殊处理FactoryBean？
+		//FIXME 特殊处理FactoryBean？
 		// Eagerly check singleton cache for manually registered singletons.
 		Object sharedInstance = getSingleton(beanName);
 		if (sharedInstance != null && args == null) {
@@ -300,6 +300,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				// Create bean instance.
 				if (mbd.isSingleton()) {
+					//FIXME createBean ,这里可选使用PostProcessor创建bean
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
 							return createBean(beanName, mbd, args);
