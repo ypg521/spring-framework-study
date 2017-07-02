@@ -32,6 +32,7 @@ public class ReaderContext {
 	private final Resource resource;
 
 	private final ProblemReporter problemReporter;
+	/**@see  EmptyReaderEventListener*/
 
 	private final ReaderEventListener eventListener;
 

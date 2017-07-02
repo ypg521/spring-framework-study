@@ -514,15 +514,33 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
+			/**
+			添加了两个跟context容器有关的processor
+			 @see ApplicationContextAwareProcessor   资源加工
+			 @see  ApplicationListenerDetector		 listener加工
+			 */
+
 			prepareBeanFactory(beanFactory);
 
 			try {
 				// Allows post-processing of the bean factory in context subclasses.
 				postProcessBeanFactory(beanFactory);
 
+				/**
+				 * 添加一个processor
+				 *
+				 * @see org.springframework.context.annotation.ConfigurationClassPostProcessor.ImportAwareBeanPostProcessor
+				 */
+
 				// Invoke factory processors registered as beans in the context.
 				invokeBeanFactoryPostProcessors(beanFactory);
 
+				/**4个
+				 * @see org.springframework.context.annotation.CommonAnnotationBeanPostProcessor
+				 * @see org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+				 * @see org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
+				 * @see ApplicationListenerDetector
+				 */
 				// Register bean processors that intercept bean creation.
 				registerBeanPostProcessors(beanFactory);
 

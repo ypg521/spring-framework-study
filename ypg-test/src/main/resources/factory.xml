@@ -5,19 +5,19 @@
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 
-	<bean id="user" class="com.ypg521.beans.User" scope="singleton" >
+	<bean id="user" class="com.ypg521.factory.User" scope="singleton" >
 		<property name="id" value="1"/>
 		<property name="name" value="test"/>
 	</bean>
 
 	<alias name="user" alias="u1"></alias>
 
-	<bean id="prototypeUser" class="com.ypg521.beans.User" scope="prototype"></bean>
+	<bean id="prototypeUser" class="com.ypg521.factory.User" scope="prototype"></bean>
 
-	<bean id="demoFactoryBean" class="com.ypg521.beans.DemoFactoryBean">
+	<bean id="demoFactoryBean" class="com.ypg521.factory.DemoFactoryBean">
 	</bean>
 
-	<bean id="demoServer" class="com.ypg521.beans.DemoServer">
+	<bean id="demoServer" class="com.ypg521.factory.DemoServer">
 		<property name="user" ref="user"></property>
 	</bean>
 </beans>

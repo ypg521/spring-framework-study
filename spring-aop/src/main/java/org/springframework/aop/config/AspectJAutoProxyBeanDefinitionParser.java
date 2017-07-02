@@ -39,7 +39,13 @@ class AspectJAutoProxyBeanDefinitionParser implements BeanDefinitionParser {
 
 	@Override
 	public BeanDefinition parse(Element element, ParserContext parserContext) {
+		//注册  AnnotationAwareAspectJAutoProxyCreator  代理构造器
+		//proxy-target-class  expose-proxy
+		//proxy-target-class=true 时 设置代理构造器的属性 proxyTargetClass =true
+		//expose-proxy=true 时 设置代理构造器的属性 exposeProxy =true
+		//registerComponentIfNecessary
 		AopNamespaceUtils.registerAspectJAnnotationAutoProxyCreatorIfNecessary(parserContext, element);
+		//子元素 include name
 		extendBeanDefinition(element, parserContext);
 		return null;
 	}

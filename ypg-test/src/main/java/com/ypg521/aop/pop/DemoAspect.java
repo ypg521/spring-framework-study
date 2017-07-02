@@ -1,4 +1,4 @@
-package com.ypg521.aop;
+package com.ypg521.aop.pop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class DemoAspect {
 
-	@Pointcut("execution(* com.ypg521.aop.DemoService.*(..))")
+	@Pointcut("execution(* com.ypg521.aop.pop.DemoService.*(..))")
 	public void aspect() {
 	}
 

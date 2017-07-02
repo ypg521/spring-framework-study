@@ -1,4 +1,4 @@
-package com.ypg521.beans;
+package com.ypg521.factory;
 
 import org.springframework.beans.factory.FactoryBean;
 

@@ -1,4 +1,4 @@
-package com.ypg521.beans;
+package com.ypg521.factory;
 
 /**
  * Created by Administrator on 2017/6/28.

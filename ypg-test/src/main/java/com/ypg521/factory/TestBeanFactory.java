@@ -1,11 +1,9 @@
-package com.ypg521.beans;
+package com.ypg521.factory;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.FactoryBean;
-import org.springframework.beans.factory.config.Scope;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 
@@ -26,7 +24,7 @@ public class TestBeanFactory {
 		 * */
 		factory = new DefaultListableBeanFactory();
 		//返回 找到了多少 BeanDefinition
-		int loadBeanDefinitionsNumber = new XmlBeanDefinitionReader(factory).loadBeanDefinitions("beans/User.xml");
+		int loadBeanDefinitionsNumber = new XmlBeanDefinitionReader(factory).loadBeanDefinitions("factory.xml");
 		System.out.println(loadBeanDefinitionsNumber);
 	}
 

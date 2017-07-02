@@ -235,8 +235,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 		final String beanName = transformedBeanName(name);
 		Object bean;
-		//FIXME 特殊处理FactoryBean？
+		//FIXME   跟 SmartInstantiationAwareBeanPostProcessor 有关？
 		// Eagerly check singleton cache for manually registered singletons.
+		//earlySingletonObjects
+		//singletonFactories
 		Object sharedInstance = getSingleton(beanName);
 		if (sharedInstance != null && args == null) {
 			if (logger.isDebugEnabled()) {
@@ -248,6 +250,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					logger.debug("Returning cached instance of singleton bean '" + beanName + "'");
 				}
 			}
+			//如果是BeanFactory 则返回创建的bean，否则直接返回sharedInstance
 			bean = getObjectForBeanInstance(sharedInstance, name, beanName, null);
 		}
 
@@ -259,6 +262,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			}
 
 			// Check if bean definition exists in this factory.
+			//FIXME 如果存在parentBeanFactory，则从parentBeanFactory获取？？
 			BeanFactory parentBeanFactory = getParentBeanFactory();
 			if (parentBeanFactory != null && !containsBeanDefinition(beanName)) {
 				// Not found -> check parent.

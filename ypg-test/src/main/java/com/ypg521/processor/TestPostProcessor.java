@@ -4,7 +4,6 @@ import com.ypg521.processor.bean.Student;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.config.DestructionAwareBeanPostProcessor;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 
@@ -19,7 +18,7 @@ public class TestPostProcessor {
 	public void doBefore() {
 		factory = new DefaultListableBeanFactory();
 		//返回 找到了多少 BeanDefinition
-		int loadBeanDefinitionsNumber = new XmlBeanDefinitionReader(factory).loadBeanDefinitions("processor/application.xml");
+		int loadBeanDefinitionsNumber = new XmlBeanDefinitionReader(factory).loadBeanDefinitions("processor.xml");
 		System.out.println(loadBeanDefinitionsNumber);
 	}
 
@@ -41,6 +40,13 @@ public class TestPostProcessor {
 	@Test
 	public void  testMergedBeanDefinitionPostProcessor(){
 		factory.addBeanPostProcessor(new DefaultMergedBeanDefinitionPostProcessor());
+		Student student = (Student) factory.getBean("student");
+		Assert.assertTrue(student != null);
+	}
+
+	@Test
+	public void testBeanPostProcessor(){
+		factory.addBeanPostProcessor(new DafaultBeanPostProcessor());
 		Student student = (Student) factory.getBean("student");
 		Assert.assertTrue(student != null);
 	}

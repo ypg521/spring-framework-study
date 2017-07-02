@@ -6,7 +6,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -22,6 +21,9 @@ public class TestContext {
 		/**
 		 * @see   org.springframework.beans.factory.support.AbstractBeanFactory.getBean(String name)
 		 *
+		 *
+		 * refresh()
+		 *
 		 *new ClassPathXmlApplicationContext时调用了refresh()
 		 * 				 getBean("org.springframework.context.annotation.internalConfigurationAnnotationProcessor")
 		 *               getBean("org.springframework.context.annotation.internalAutowiredAnnotationProcessor")
@@ -32,7 +34,8 @@ public class TestContext {
 		 *
 		 */
 		System.out.println("init context");
-		context = new ClassPathXmlApplicationContext("context/application.xml");
+		context = new ClassPathXmlApplicationContext("context.xml");
+		context.setDisplayName("firstContext");
 	}
 
 	@After
@@ -41,11 +44,16 @@ public class TestContext {
 	}
 
 	@Test
+	public void testApplication() {
+		String applicationName = context.getDisplayName();
+		System.out.println(applicationName);
+
+	}
+
+	@Test
 	public void test() {
-		/**@see   org.springframework.beans.factory.support.AbstractBeanFactory.getBean(String name)
-		 *
-		 *
-		 * */
+
+
 		Service1 service1 = (Service1) context.getBean("service1");
 		Assert.assertTrue(service1 != null);
 		service1.prototypeSay();
