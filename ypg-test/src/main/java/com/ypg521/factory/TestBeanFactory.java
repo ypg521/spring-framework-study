@@ -1,5 +1,7 @@
 package com.ypg521.factory;
 
+import com.ypg521.factory.circular.Student;
+import com.ypg521.factory.circular.Teacher;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -76,6 +78,15 @@ public class TestBeanFactory {
 		DemoServer server = (DemoServer) factory.getBean("demoServer");
 
 		Assert.assertTrue(server.getUser() != null);
+	}
+
+	//测试循环引用
+	@Test
+	public void testCircularReference() {
+		Student student = (Student) factory.getBean("student");
+		Teacher teacher = (Teacher) factory.getBean("teacher");
+		Assert.assertTrue(student == teacher.getStudent());
+		Assert.assertTrue(teacher == student.getTeacher());
 	}
 
 

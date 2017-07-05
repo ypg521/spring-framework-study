@@ -483,7 +483,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		try {
-			//FIXME 调用预置的InstantiationAwareBeanPostProcessor 创建bean，如果支持，则直接返回
+			//FIXME 调用预置的InstantiationAwareBeanPostProcessor 创建bean，如果支持，则直接返回for{doBefore()}; for{doAfter()}
 			// Give BeanPostProcessors a chance to return a proxy instead of the target bean instance.
 			Object bean = resolveBeforeInstantiation(beanName, mbdToUse);
 			if (bean != null) {
@@ -566,6 +566,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		// Eagerly cache singletons to be able to resolve circular references
 		// even when triggered by lifecycle interfaces like BeanFactoryAware.
+		//FIXME 循环引用的问题
 		boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences &&
 				isSingletonCurrentlyInCreation(beanName));
 		if (earlySingletonExposure) {
@@ -573,6 +574,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				logger.debug("Eagerly caching bean '" + beanName +
 						"' to allow for resolving potential circular references");
 			}
+			//FIXME  这里只是加了singletonFactory ，
+			// SmartInstantiationAwareBeanPostProcessor.getEarlyBeanReference
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 		}
 

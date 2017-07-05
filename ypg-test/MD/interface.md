@@ -8,10 +8,28 @@
 
 * registerScope() 添加自定义的bean作用域,默认只有singleton和prototype。
 * addBeanPostProcessor(BeanPostProcessor b) ， 添加bean创建、初始化时的加工器。可以控制bean实例化、set属性等操作
-        子接口InstantiationAwareBeanPostProcessor 实现此接口，可在实例化bean前后做一些自定义的处理，也可以自定义获取属性值
-                SmartInstantiationAwareBeanPostProcessor getEarlyBeanReference解决循环依赖
-        子接口MergedBeanDefinitionPostProcessor 
-        子接口DestructionAwareBeanPostProcessor
+以下按照处理顺序排序: AbstractAutowireCapableBeanFactory。doCreateBean
+        子接口InstantiationAwareBeanPostProcessor 实现此接口，可在实例化bean前后做一些自定义的处理，伪代码
+               ```
+               for(){
+                   result= doBefore()
+                   if(result!=null) return result;
+               }
+               return null;
+               ```
+               ```
+               if(doForBefore()!=null)
+                    for(){
+                        result= doAfter()
+                        if(result==null) return null;
+                    }
+                    return result;
+                ```
+        if for{doBefore()} return null; 则不会执行 for{doAfter()}。最终返回非空就停止beanFactory的执行,以下子接口也就没有执行的机会了。
+
+        子接口MergedBeanDefinitionPostProcessor ，初始化以后，填充之前修改mbd的设置
+         如果支持earlyBean 则缓存ObjecFactory （实际实现是操作   孙子SmartInstantiationAwareBeanPostProcessor getEarlyBeanReference解决循环依赖）
+        子接口DestructionAwareBeanPostProcessor, 销毁时触发
 
 
 
@@ -89,7 +107,9 @@ TxNamespaceHandler
 
 ## 备忘
 * Advisor接口的用法
-       
+*  循环依赖实现  org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java:570  BeanDefinitionValueResolver.resolveReference 设置reference类型的值
+* MergedBeanDefinitionPostProcessor 接口的处理逻辑
+ 
       
 
 
