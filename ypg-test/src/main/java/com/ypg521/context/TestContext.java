@@ -1,5 +1,6 @@
 package com.ypg521.context;
 
+import com.ypg521.context.beans.DistoryBean;
 import com.ypg521.context.beans.annotation.service.Service1;
 import com.ypg521.context.beans.annotation.service.Service2;
 import org.junit.After;
@@ -72,6 +73,14 @@ public class TestContext {
 		service2.singletonSay();
 		System.out.println("---------------------------------------------------------------------------");
 
+
+	}
+	@Test
+	public void testDestrict(){
+		context.registerShutdownHook();
+		DistoryBean distoryBean = (DistoryBean) context.getBean("distoryBean");
+
+		Assert.assertTrue(distoryBean!=null);
 
 	}
 
