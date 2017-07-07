@@ -48,12 +48,10 @@ public class TestContext {
 	public void testApplication() {
 		String applicationName = context.getDisplayName();
 		System.out.println(applicationName);
-
 	}
 
 	@Test
 	public void test() {
-
 
 		Service1 service1 = (Service1) context.getBean("service1");
 		Assert.assertTrue(service1 != null);
@@ -72,15 +70,17 @@ public class TestContext {
 		service2.prototypeSay();
 		service2.singletonSay();
 		System.out.println("---------------------------------------------------------------------------");
-
-
 	}
+
 	@Test
-	public void testDestrict(){
+	public void testDestroy() {
 		context.registerShutdownHook();
 		DistoryBean distoryBean = (DistoryBean) context.getBean("distoryBean");
+		Assert.assertTrue(distoryBean != null);
+	}
 
-		Assert.assertTrue(distoryBean!=null);
+	@Test
+	public void testListener() {
 
 	}
 

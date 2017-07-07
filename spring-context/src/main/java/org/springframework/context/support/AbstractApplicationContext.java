@@ -517,7 +517,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			/**
 			添加了两个跟context容器有关的processor
 			 @see ApplicationContextAwareProcessor   资源加工
-			 @see  ApplicationListenerDetector		 listener加工
+			 @see  ApplicationListenerDetector		 listener加工  this.applicationContext.addApplicationListener((ApplicationListener<?>) bean);
 			 */
 
 			prepareBeanFactory(beanFactory);
@@ -648,7 +648,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		beanFactory.addPropertyEditorRegistrar(new ResourceEditorRegistrar(this, getEnvironment()));
 
 		// Configure the bean factory with context callbacks.
+		//这个处理器就是为了处理以下Aware
 		beanFactory.addBeanPostProcessor(new ApplicationContextAwareProcessor(this));
+		//忽略给定接口的自动装配功能
 		beanFactory.ignoreDependencyInterface(EnvironmentAware.class);
 		beanFactory.ignoreDependencyInterface(EmbeddedValueResolverAware.class);
 		beanFactory.ignoreDependencyInterface(ResourceLoaderAware.class);

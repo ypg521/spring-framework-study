@@ -37,7 +37,7 @@ AnnotationAwareOrderComparator @Order的比较器
 
 ### context，ClassPathXmlApplicationContext
 * Aware ,资源超级接口，spring帮助设置响应的资源，比如实现了子接口BeanFactoryAware的bean会设置好BeanFactory。ApplicationContextAware类似
-* EventListener
+* ApplicationEvent (定义) ， ApplicationEventPublisherAware(发布) ，ApplicationListener (监听)
 * ApplicationListener&ApplicationEvent
 
 

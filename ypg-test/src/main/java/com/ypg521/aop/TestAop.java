@@ -6,6 +6,7 @@ import com.ypg521.aop.pop.NoAspectDemoService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.aop.config.AopConfigUtils;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -44,11 +45,18 @@ public class TestAop {
 		System.out.println(noAspectDemoService);
 		return;
 	}
+
 	@Test
-	public void testInterfaceAspect(){
+	public void testInterfaceAspect() {
 		DemoInterface demoInterface = (DemoInterface) context.getBean("demoInterface");
-		Assert.assertTrue(demoInterface!=null);
+		Assert.assertTrue(demoInterface != null);
 		demoInterface.say();
+	}
+
+	@Test
+	public void testProxyCreatorBean() {
+		Object o = context.getBean(AopConfigUtils.AUTO_PROXY_CREATOR_BEAN_NAME);
+		System.out.println(o);
 	}
 
 }
