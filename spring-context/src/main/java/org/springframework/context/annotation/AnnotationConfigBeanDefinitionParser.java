@@ -33,10 +33,11 @@ import org.springframework.beans.factory.xml.ParserContext;
  * @author Mark Fisher
  * @author Juergen Hoeller
  * @author Christian Dupuis
- * @since 2.5
  * @see AnnotationConfigUtils
+ * @since 2.5
  */
 public class AnnotationConfigBeanDefinitionParser implements BeanDefinitionParser {
+
 
 	@Override
 	public BeanDefinition parse(Element element, ParserContext parserContext) {

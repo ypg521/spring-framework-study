@@ -34,6 +34,14 @@ public class ContextNamespaceHandler extends NamespaceHandlerSupport {
 	public void init() {
 		registerBeanDefinitionParser("property-placeholder", new PropertyPlaceholderBeanDefinitionParser());
 		registerBeanDefinitionParser("property-override", new PropertyOverrideBeanDefinitionParser());
+		/**
+		 * 注册了
+		 * AutowiredAnnotationBeanPostProcessor  对 @Autowired的支持
+		 * CommonAnnotationBeanPostProcessor  对@ Resource 、@ PostConstruct、@ PreDestroy的支持
+		 * PersistenceAnnotationBeanPostProcessor 支持 @PersistenceContext
+		 * RequiredAnnotationBeanPostProcessor 对 @Required的支持
+		 * TODO　与component-scan差不多？？
+		 */
 		registerBeanDefinitionParser("annotation-config", new AnnotationConfigBeanDefinitionParser());
 		registerBeanDefinitionParser("component-scan", new ComponentScanBeanDefinitionParser());
 		registerBeanDefinitionParser("load-time-weaver", new LoadTimeWeaverBeanDefinitionParser());
