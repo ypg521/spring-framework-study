@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ypg521.tx.transaction.dao.UserAddressMapper" >
+
+	<insert id="insert" parameterType="com.ypg521.tx.transaction.entity.UserAddress" keyProperty="id" useGeneratedKeys="true">
+		INSERT  INTO user_address
+		(id,user_id,address,status)
+		VALUE
+		(#{id},#{userId},#{address},#{status})
+	</insert>
+
+</mapper>

@@ -33,9 +33,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 2.0
  * @see XmlReaderContext
  * @see BeanDefinitionParserDelegate
+ * @since 2.0
  */
 public final class ParserContext {
 
@@ -54,7 +54,7 @@ public final class ParserContext {
 	}
 
 	public ParserContext(XmlReaderContext readerContext, BeanDefinitionParserDelegate delegate,
-			@Nullable BeanDefinition containingBeanDefinition) {
+						 @Nullable BeanDefinition containingBeanDefinition) {
 
 		this.readerContext = readerContext;
 		this.delegate = delegate;
@@ -100,6 +100,7 @@ public final class ParserContext {
 		this.containingComponents.push(containingComponent);
 	}
 
+	//弹出第一个元素
 	public CompositeComponentDefinition popContainingComponent() {
 		return (CompositeComponentDefinition) this.containingComponents.pop();
 	}
@@ -112,8 +113,7 @@ public final class ParserContext {
 		CompositeComponentDefinition containingComponent = getContainingComponent();
 		if (containingComponent != null) {
 			containingComponent.addNestedComponent(component);
-		}
-		else {
+		} else {
 			this.readerContext.fireComponentRegistered(component);
 		}
 	}

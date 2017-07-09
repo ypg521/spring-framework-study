@@ -36,6 +36,21 @@
 AnnotationAwareOrderComparator @Order的比较器
 
 ### context，ClassPathXmlApplicationContext
+
+annotation-config、component-scan都会addBeanDefine:
+
+* ConfigurationClassPostProcessor
+* AutowiredAnnotationBeanPostProcessor
+* RequiredAnnotationBeanPostProcessor
+* CommonAnnotationBeanPostProcessor
+* PersistenceAnnotationBeanPostProcessor
+* EventListenerMethodProcessor
+* DefaultEventListenerFactory
+
+而且component-scan会扫面Component、Service等注解，而annotation-config就可以不要了。
+
+refresh()时讲以上类加入processor组
+
 * Aware ,资源超级接口，spring帮助设置响应的资源，比如实现了子接口BeanFactoryAware的bean会设置好BeanFactory。ApplicationContextAware类似
 * ApplicationEvent (定义) ， ApplicationEventPublisherAware(发布) ，ApplicationListener (监听)
 * ApplicationListener&ApplicationEvent

@@ -477,6 +477,10 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 				return false;
 			}
 		}
+		/**
+		 *
+		 * @AnnotationTypeFilter
+		 */
 		for (TypeFilter tf : this.includeFilters) {
 			if (tf.match(metadataReader, this.metadataReaderFactory)) {
 				return isConditionMatch(metadataReader);

@@ -14,14 +14,82 @@
 	   default-lazy-init="false">
 
 
-	<context:component-scan base-package="com.ypg521.aop">
+	<context:component-scan base-package="com.ypg521.tx.transaction">
 
 	</context:component-scan>
 
 	<aop:aspectj-autoproxy>
 	</aop:aspectj-autoproxy>
 
-	<tx:annotation-driven ></tx:annotation-driven>
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="username" value="root"/>
+		<property name="password" value="123456"/>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/spring_test?useUnicode=true"/>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	</bean>
+
+
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.ypg521.tx.transaction.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:tx/mybatis/*.xml"></property>
+	</bean>
+
+
+	<!--
+
+
+        <tx:advice id="txAdvice" transaction-manager="transactionManager">
+            <tx:attributes>
+                <tx:method name="bulk*" propagation="REQUIRED" isolation="DEFAULT" />
+                <tx:method name="load*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
+            </tx:attributes>
+        </tx:advice>
+        <aop:config>
+            <aop:advisor pointcut="execution(* *..*Service*.*(..))" advice-ref="txAdvice" />
+        </aop:config>
+
+    -->
+
+	<!--
+
+
+        <aop:config>
+            <aop:pointcut id="allServiceMethods"
+                          expression="execution(* com.apress.prospring2.ch16.services.*.*(..))"/>
+            <aop:advisor advice-ref="defaultTransactionAdvice"
+                         pointcut-ref="allServiceMethods"/>
+        </aop:config>
+
+
+        <tx:advice id="defaultTransactionAdvice" transaction-manager="transactionManager">
+            <tx:attributes>
+                <tx:method
+                        name="*"
+                        isolation="DEFAULT"
+                        propagation="REQUIRED"
+                        no-rollback-for="java.lang.RuntimeException"
+                        timeout="100"/>
+                <tx:method
+                        name="get*"
+                        read-only="true"/>
+            </tx:attributes>
+        </tx:advice>
+        -->
 
 
 </beans>

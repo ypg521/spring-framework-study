@@ -44,6 +44,24 @@ public class AnnotationConfigBeanDefinitionParser implements BeanDefinitionParse
 		Object source = parserContext.extractSource(element);
 
 		// Obtain bean definitions for all relevant BeanPostProcessors.
+		//
+		/***
+		 * setDependencyComparator
+		 * setAutowireCandidateResolver
+		 *
+		 *
+		 * add
+		 *
+		 * ConfigurationClassPostProcessor
+		 * AutowiredAnnotationBeanPostProcessor
+		 * RequiredAnnotationBeanPostProcessor
+		 * CommonAnnotationBeanPostProcessor
+		 * PersistenceAnnotationBeanPostProcessor
+		 * EventListenerMethodProcessor
+		 * DefaultEventListenerFactory
+		 *
+		 *
+		 */
 		Set<BeanDefinitionHolder> processorDefinitions =
 				AnnotationConfigUtils.registerAnnotationConfigProcessors(parserContext.getRegistry(), source);
 
