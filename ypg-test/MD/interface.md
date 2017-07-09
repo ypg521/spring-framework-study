@@ -58,8 +58,8 @@ refresh()时讲以上类加入processor组
 
 ### aop
 使用配置 <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"></aop:aspectj-autoproxy>
-
-加入加工器  AnnotationAwareAspectJAutoProxyCreator，根据 xml配置设置响应的属性
+			
+加入加工器  AnnotationAwareAspectJAutoProxyCreator，根据 xml配置设置响应的属性，扫描切面接口和注解
 * postProcessBeforeInstantiation 如果CustomTargetSource！=null 则创建proxy      ？？？？
 
 * postProcessAfterInitialization 如果已经生成proxy，则返回bean，否则生成返回的proxy ？？？？
@@ -109,7 +109,10 @@ refresh()时讲以上类加入processor组
 
 TxNamespaceHandler
 
+添加InfrastructureAdvisorAutoProxyCreator 与aop的ProxyCreator作用类似，并且可能用替换它。但是他只扫描切面接口
 
+advisor  PointcutAdvisor  BeanFactoryTransactionAttributeSourceAdvisor
+advice TransactionInterceptor
 
 @Autowired Aware 通过processor实现
 

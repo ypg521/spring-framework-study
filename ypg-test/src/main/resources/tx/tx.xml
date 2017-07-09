@@ -12,14 +12,32 @@
 		http://www.springframework.org/schema/tx
  		http://www.springframework.org/schema/tx/spring-tx.xsd"
 	   default-lazy-init="false">
+	<!--
 
+    	Service Component等注解的支持，解析到这个标签还是默认加上@Autowired等标签的处理器
+
+        <context:annotation-config></context:annotation-config> 也会默认添加@Autowired的处理器，但是不会识别@Service组件
+
+    -->
 
 	<context:component-scan base-package="com.ypg521.tx.transaction">
 
 	</context:component-scan>
 
-	<aop:aspectj-autoproxy>
-	</aop:aspectj-autoproxy>
+	<!--
+		<aop:aspectj-autoproxy/>
+
+		即使没有这个标签，tx的解析器也会加一个proxyCreator的
+		但是就不能识别切面注解了， 只能识别切面接口
+	-->
+
+
+	<!--
+        AnnotationDrivenBeanDefinitionParser
+    -->
+
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="username" value="root"/>
@@ -29,8 +47,6 @@
 	</bean>
 
 
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-
 	<bean id="transactionManager"
 		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
@@ -38,15 +54,15 @@
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.ypg521.tx.transaction.dao" />
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+		<property name="basePackage" value="com.ypg521.tx.transaction.dao"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
 	</bean>
 
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="dataSource"/>
 		<!-- 自动扫描mapping.xml文件 -->
-		<property name="mapperLocations" value="classpath:tx/mybatis/*.xml"></property>
+		<property name="mapperLocations" value="classpath:tx/mybatis/*.xml"/>
 	</bean>
 
 

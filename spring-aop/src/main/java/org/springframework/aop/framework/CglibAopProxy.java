@@ -668,6 +668,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 				Class<?> targetClass = (target != null ? target.getClass() : null);
 				List<Object> chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass);
 				Object retVal;
+				System.out.println(chain.toString());
 				// Check whether we only have one InvokerInterceptor: that is,
 				// no real advice, but just reflective invocation of the target.
 				if (chain.isEmpty() && Modifier.isPublic(method.getModifiers())) {
@@ -767,7 +768,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 		@Override
 		public int accept(Method method) {
 			int i = accept(method, 1);
-//			System.out.println(method.getName() + "---" + i);
+			System.out.println(method.getName() + "---" + i);
 			return i;
 		}
 

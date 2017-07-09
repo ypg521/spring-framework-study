@@ -15,8 +15,8 @@ public class DemoService {
 
 	public void sayWithInner() {
 		System.out.println("sayWithInner");
-		((DemoService) AopContext.currentProxy()).innerSay();
-//		innerSay();
+
+		innerSay();
 	}
 
 

@@ -1,6 +1,7 @@
 package com.ypg521.tx;
 
 import com.ypg521.tx.transaction.service.UserService;
+import org.aspectj.lang.annotation.Aspect;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

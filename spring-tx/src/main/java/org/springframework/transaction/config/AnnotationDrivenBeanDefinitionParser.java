@@ -35,7 +35,7 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
  * BeanDefinitionParser} implementation that allows users to easily configure
  * all the infrastructure beans required to enable annotation-driven transaction
  * demarcation.
- *
+ * <p>
  * <p>By default, all proxies are created as JDK proxies. This may cause some
  * problems if you are injecting objects as concrete classes rather than
  * interfaces. To overcome this restriction you can set the
@@ -62,8 +62,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		if ("aspectj".equals(mode)) {
 			// mode="aspectj"
 			registerTransactionAspect(element, parserContext);
-		}
-		else {
+		} else {
 			// mode="proxy"
 			AopAutoProxyConfigurer.configureAutoProxyCreator(element, parserContext);
 		}
@@ -101,6 +100,11 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 	private static class AopAutoProxyConfigurer {
 
 		public static void configureAutoProxyCreator(Element element, ParserContext parserContext) {
+			/** 注册InfrastructureAdvisorAutoProxyCreator  只扫描接口切面 设置exporse-proxy的属性，
+			 * 与aop的creator使用同一key
+			 * 可能会的替换aop的AnnotationAwareAspectJAutoProxyCreator  扫描注解与接口
+			 * 所以说 即使没有在xml定义aop的标签，事物也可以生效的
+			 */
 			AopNamespaceUtils.registerAutoProxyCreatorIfNecessary(parserContext, element);
 
 			String txAdvisorBeanName = TransactionManagementConfigUtils.TRANSACTION_ADVISOR_BEAN_NAME;
@@ -118,6 +122,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 				RootBeanDefinition interceptorDef = new RootBeanDefinition(TransactionInterceptor.class);
 				interceptorDef.setSource(eleSource);
 				interceptorDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
+				//注册事务管理器
 				registerTransactionManager(element, interceptorDef);
 				interceptorDef.getPropertyValues().add("transactionAttributeSource", new RuntimeBeanReference(sourceName));
 				String interceptorName = parserContext.getReaderContext().registerWithGeneratedName(interceptorDef);
@@ -131,6 +136,15 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 				if (element.hasAttribute("order")) {
 					advisorDef.getPropertyValues().add("order", element.getAttribute("order"));
 				}
+
+				/**
+				 * BeanFactoryTransactionAttributeSourceAdvisor
+				 * 		adviceBeanName=TransactionInterceptor
+				 * 						transactionManagerBeanName=transactionManagerBeanName
+				 * 		transactionAttributeSource
+				 * 						AnnotationTransactionAttributeSource
+				 *
+				 */
 				parserContext.getRegistry().registerBeanDefinition(txAdvisorBeanName, advisorDef);
 
 				CompositeComponentDefinition compositeDef = new CompositeComponentDefinition(element.getTagName(), eleSource);
