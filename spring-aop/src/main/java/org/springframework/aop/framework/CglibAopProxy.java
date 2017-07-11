@@ -207,7 +207,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 			enhancer.setCallbackFilter(new ProxyCallbackFilter(
 					this.advised.getConfigurationOnlyCopy(), this.fixedInterceptorMap, this.fixedInterceptorOffset));
 			enhancer.setCallbackTypes(types);
-
+// CallbackFilter并不是在调用某个方法时执行的，而是createProxy是test了这个类的所有的方法
 			// Generate the proxy class and create a proxy instance.
 			return createProxyClassAndInstance(enhancer, callbacks);
 		} catch (CodeGenerationException | IllegalArgumentException ex) {
@@ -668,7 +668,6 @@ class CglibAopProxy implements AopProxy, Serializable {
 				Class<?> targetClass = (target != null ? target.getClass() : null);
 				List<Object> chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass);
 				Object retVal;
-				System.out.println(chain.toString());
 				// Check whether we only have one InvokerInterceptor: that is,
 				// no real advice, but just reflective invocation of the target.
 				if (chain.isEmpty() && Modifier.isPublic(method.getModifiers())) {
