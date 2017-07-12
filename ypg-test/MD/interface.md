@@ -108,11 +108,12 @@ refresh()时讲以上类加入processor组
 ### spring-tx
 
 TxNamespaceHandler
+AnnotationDrivenBeanDefinitionParser
 
 添加InfrastructureAdvisorAutoProxyCreator 与aop的ProxyCreator作用类似，并且可能用替换它。但是他只扫描切面接口
 
 advisor  PointcutAdvisor  BeanFactoryTransactionAttributeSourceAdvisor
-advice TransactionInterceptor
+advice TransactionInterceptor  
 
 @Autowired Aware 通过processor实现
 

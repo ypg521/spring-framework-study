@@ -27,4 +27,9 @@ public class Service1 {
 		System.out.println(s);
 
 	}
+
+	@Autowired
+	public void ddd(PrototypeComponent prototypeComponent){
+
+	}
 }

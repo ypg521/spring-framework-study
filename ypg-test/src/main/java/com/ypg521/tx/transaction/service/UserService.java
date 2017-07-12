@@ -20,6 +20,8 @@ public class UserService {
 	private UserAddressMapper userAddressMapper;
 	@Autowired
 	private UserAccountMapper userAccountMapper;
+	@Autowired
+	private UserAdressService userAdressService;
 
 	@Transactional
 	public void saveUserInfo(String userName, String address) {
@@ -30,6 +32,7 @@ public class UserService {
 		userAccount.setCreateTime(now);
 		userAccount.setUpdateTime(now);
 		userAccountMapper.insert(userAccount);
+		System.out.println(userAccount);
 
 
 		UserAddress userAddress = new UserAddress();
@@ -38,6 +41,32 @@ public class UserService {
 		userAddress.setAddress(address);
 
 		userAddressMapper.insert(userAddress);
+		userAdressService.saveAddress(userAccount.getUserId(),String.valueOf(RandomUtils.nextInt(1000000,999999999)));
+
+	}
+	@Transactional
+	public void saveUserInfoInner(String userName, String address){
+		//
+		Date now = new Date();
+		UserAccount userAccount = new UserAccount();
+		userAccount.setUserName(userName);
+		userAccount.setPassWord(String.valueOf(RandomUtils.nextInt(10001, 99999)));
+		userAccount.setCreateTime(now);
+		userAccount.setUpdateTime(now);
+		userAccountMapper.insert(userAccount);
+		System.out.println(userAccount);
+
+
+		UserAddress userAddress = new UserAddress();
+		userAddress.setUserId(userAccount.getUserId());
+		userAddress.setStatus(Byte.valueOf("1"));
+		userAddress.setAddress(address);
+
+		userAddressMapper.insert(userAddress);
+		saveAddress(userAccount.getUserId(),String.valueOf(RandomUtils.nextInt(1000001,999999999)));
+	}
+
+	public void saveAddress(Long accountId, String address) {
 
 	}
 }

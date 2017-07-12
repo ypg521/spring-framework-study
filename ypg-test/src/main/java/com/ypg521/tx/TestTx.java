@@ -30,5 +30,12 @@ public class TestTx {
 		userService.saveUserInfo("ypg521", "河南省周口市");
 	}
 
+	@Test
+	public void testUserServiceInner() {
+
+		UserService userService = (UserService) context.getBean("userService");
+		userService.saveUserInfoInner("ypg521", "河南省周口市");
+	}
+
 
 }

@@ -276,6 +276,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		//AnnotationTransactionAttributeSource
 		TransactionAttributeSource tas = getTransactionAttributeSource();
 		final TransactionAttribute txAttr = (tas != null ? tas.getTransactionAttribute(method, targetClass) : null);
+//		DataSourceTransactionManager
 		final PlatformTransactionManager tm = determineTransactionManager(txAttr);
 		final String joinpointIdentification = methodIdentification(method, targetClass, txAttr);
 
@@ -452,6 +453,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		TransactionStatus status = null;
 		if (txAttr != null) {
 			if (tm != null) {
+				//doBegin
 				status = tm.getTransaction(txAttr);
 			}
 			else {

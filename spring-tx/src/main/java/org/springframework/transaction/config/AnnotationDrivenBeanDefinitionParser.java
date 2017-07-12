@@ -107,6 +107,15 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 			 */
 			AopNamespaceUtils.registerAutoProxyCreatorIfNecessary(parserContext, element);
 
+			/**
+			 * BeanFactoryTransactionAttributeSourceAdvisor
+			 * 		adviceBeanName=TransactionInterceptor
+			 * 						transactionManagerBeanName=transactionManagerBeanName
+			 * 		transactionAttributeSource
+			 * 						AnnotationTransactionAttributeSource
+			 *
+			 */
+
 			String txAdvisorBeanName = TransactionManagementConfigUtils.TRANSACTION_ADVISOR_BEAN_NAME;
 			if (!parserContext.getRegistry().containsBeanDefinition(txAdvisorBeanName)) {
 				Object eleSource = parserContext.extractSource(element);
@@ -137,14 +146,6 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 					advisorDef.getPropertyValues().add("order", element.getAttribute("order"));
 				}
 
-				/**
-				 * BeanFactoryTransactionAttributeSourceAdvisor
-				 * 		adviceBeanName=TransactionInterceptor
-				 * 						transactionManagerBeanName=transactionManagerBeanName
-				 * 		transactionAttributeSource
-				 * 						AnnotationTransactionAttributeSource
-				 *
-				 */
 				parserContext.getRegistry().registerBeanDefinition(txAdvisorBeanName, advisorDef);
 
 				CompositeComponentDefinition compositeDef = new CompositeComponentDefinition(element.getTagName(), eleSource);
