@@ -345,6 +345,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					//FIXME createBean ,这里可选使用PostProcessor创建bean
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
+							//resolvedTargetType ==org.mybatis.spring.mapper.MapperFactoryBean
+							//beanClass= org.mybatis.spring.mapper.MapperFactoryBean
 							return createBean(beanName, mbd, args);
 						} catch (BeansException ex) {
 							// Explicitly remove instance from singleton cache: It might have been put there

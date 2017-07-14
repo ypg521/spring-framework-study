@@ -511,6 +511,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
+			//loadBeanDefine
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
@@ -519,7 +520,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			 @see ApplicationContextAwareProcessor   资源加工
 			 @see  ApplicationListenerDetector		 listener加工  this.applicationContext.addApplicationListener((ApplicationListener<?>) bean);
 			 */
-
 			prepareBeanFactory(beanFactory);
 
 			try {
@@ -531,7 +531,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				 *
 				 * @see org.springframework.context.annotation.ConfigurationClassPostProcessor.ImportAwareBeanPostProcessor
 				 */
-
+				//FIXME  invokeBeanFactoryPostProcessors  beanFactoryPostProcessors
 				// Invoke factory processors registered as beans in the context.
 				invokeBeanFactoryPostProcessors(beanFactory);
 

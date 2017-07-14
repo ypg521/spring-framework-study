@@ -31,6 +31,7 @@
          如果支持earlyBean 则缓存ObjecFactory （实际实现是操作   孙子SmartInstantiationAwareBeanPostProcessor getEarlyBeanReference解决循环依赖）
         子接口DestructionAwareBeanPostProcessor, 销毁时触发
 
+BeanDefinitionRegistryPostProcessor  (super BeanFactoryPostProcessor)
 
 
 AnnotationAwareOrderComparator @Order的比较器
@@ -128,6 +129,7 @@ advice TransactionInterceptor
 * Advisor接口的用法
 *  循环依赖实现  org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java:570  BeanDefinitionValueResolver.resolveReference 设置reference类型的值
 * MergedBeanDefinitionPostProcessor 接口的处理逻辑
+FactoryBean接口
  
       
 
