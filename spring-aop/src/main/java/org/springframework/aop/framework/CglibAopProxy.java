@@ -767,7 +767,6 @@ class CglibAopProxy implements AopProxy, Serializable {
 		@Override
 		public int accept(Method method) {
 			int i = accept(method, 1);
-			System.out.println(method.getName() + "---" + i);
 			return i;
 		}
 
