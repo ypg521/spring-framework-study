@@ -55,7 +55,7 @@ refresh()时讲以上类加入processor组
 * Aware ,资源超级接口，spring帮助设置响应的资源，比如实现了子接口BeanFactoryAware的bean会设置好BeanFactory。ApplicationContextAware类似
 * ApplicationEvent (定义) ， ApplicationEventPublisherAware(发布) ，ApplicationListener (监听)
 * ApplicationListener&ApplicationEvent
-
+实现BeanDefinitionRegistryPostProcessor的bean，在容器初始化时调用相应方法注册bean
 
 ### aop
 使用配置 <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"></aop:aspectj-autoproxy>
