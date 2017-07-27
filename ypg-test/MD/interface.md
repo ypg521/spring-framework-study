@@ -105,6 +105,12 @@ refresh()时讲以上类加入processor组
 * JdkDynamicAopProxy
 * CglibAopProxy
 
+start use  ReflectiveMethodInvocation
+pointCut的顺序是
+   AspectJAfterAdvice
+   AspectJAroundAdvice
+   AspectJMethodBeforeAdvice
+   
 
 ### spring-tx
 
