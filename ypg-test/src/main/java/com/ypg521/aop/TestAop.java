@@ -1,6 +1,8 @@
 package com.ypg521.aop;
 
 import com.ypg521.aop.aspect.HelloService;
+import com.ypg521.aop.aspect.WorldService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.aop.config.AopConfigUtils;
@@ -37,6 +39,16 @@ public class TestAop {
 	public void testProxyCreatorBean() {
 		Object o = context.getBean(AopConfigUtils.AUTO_PROXY_CREATOR_BEAN_NAME);
 		System.out.println(o);
+	}
+
+	@Test
+	public void testSayWorld() {
+
+		WorldService worldService = (WorldService) context.getBean("worldService");
+		StringBuilder stringBuilder = worldService.sayWorld();
+		System.out.println(stringBuilder);
+		Assert.assertEquals("sayWorlA", stringBuilder.toString());
+
 	}
 
 }

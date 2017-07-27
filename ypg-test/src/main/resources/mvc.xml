@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx
+ 		http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+	   default-lazy-init="false">
+
+
+
+	<mvc:resources mapping="/resources/**" location="/resources/"/>
+
+
+	<context:property-placeholder location="classpath*:spring-*.properties" ignore-unresolvable="true" file-encoding="UTF-8"/>
+	<context:component-scan base-package="com.bm.insurance.cloud"/>
+	<context:component-scan base-package="com.bm.insurance.commonservice"/>
+
+	<mvc:annotation-driven >
+		<mvc:message-converters register-defaults="false">
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<!--<property name="objectMapper">-->
+				<!--<bean class="com.fasterxml.jackson.databind.ObjectMapper">-->
+				<!--<property name="serializationInclusion">-->
+				<!--<value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>-->
+				<!--</property>-->
+				<!--</bean>-->
+				<!--</property>-->
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"/>
+		<property name="suffix" value=".jsp"/>
+		<property name="viewClass" value="com.bm.insurance.comm.resource.JspResourceView"/>
+	</bean>
+
+
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"/>
+	<mvc:tiles-configurer>
+		<mvc:definitions location="/dada/dada" ></mvc:definitions>
+	</mvc:tiles-configurer>
+
+	<mvc:redirect-view-controller path="/dddd" redirect-url="/dada/fsdf"/>
+
+	<!-- 登录请求 -->
+	<!--<mvc:view-controller path="/" view-name="/login"/>-->
+	<!--<mvc:view-controller path="/login" view-name="/login"/>-->
+
+	<!-- &lt;!&ndash; 登录成功页面 &ndash;&gt;
+     <mvc:view-controller path="/index" view-name="/index"/>-->
+
+	<!-- 菜单的首页页面 -->
+	<mvc:view-controller path="/indexMenuPage" view-name="/customerService/indexMenuPage"/>
+
+	<!-- 菜单的网站管理页面 -->
+	<mvc:view-controller path="/siteMenuPage" view-name="/customerService/siteMenuPage"/>
+
+	<!--网站管理-->
+	<!--<mvc:view-controller path="/msgMenuPage" view-name="/customerService/msgMenuPage"/>-->
+	<mvc:view-controller path="/articlesMenuPage" view-name="/customerService/articlesMenuPage"/>
+	<!--<mvc:view-controller path="/articleCreatePage" view-name="/customerService/articleCreatePage"/>-->
+
+	<!--<mvc:view-controller path="/linkMenuPage" view-name="/customerService/linkMenuPage"/>-->
+
+	<!-- /////////用户管理///////// -->
+	<!-- 菜单的个人用户页面 -->
+	<mvc:view-controller path="/personalMenuPage" view-name="/customerService/personalMenuPage"/>
+	<!-- 菜单的个人用户详细页面 -->
+	<mvc:view-controller path="/personalDetailMenuPage" view-name="/customerService/personalDetailMenuPage"/>
+	<!-- 菜单的客服页面 -->
+	<mvc:view-controller path="/customerServiceMenuPage" view-name="/customerService/customerServiceMenuPage"/>
+	<!-- 菜单的角色页面 -->
+	<mvc:view-controller path="/roleMenuPage" view-name="/customerService/roleMenuPage"/>
+
+
+	<!-- /////////保单管理///////// -->
+	<!-- 菜单的保单页面 -->
+	<mvc:view-controller path="/policyMenuPage" view-name="/customerService/policyMenuPage"/>
+
+	<mvc:view-controller path="/porductMenuPage" view-name="/customerService/porductMenuPage"/>
+
+	<!-- /////////理赔管理///////// -->
+	<!-- 菜单的理赔查询页面 -->
+	<mvc:view-controller path="/claimsSearchMenuPage" view-name="/claims_v1/v3/searchClaimsDataListv3"/>
+	<mvc:view-controller path="/claimsDoMenuPage" view-name="/claims_v1/v3/handClaimsDataListv3"/>
+	<!--菜单的理赔 单据配置 -->
+	<mvc:view-controller path="/claimsImgPage" view-name="/customerService/claimsImgPage"/>
+	<!--菜单的理赔 新增报案 -->
+	<mvc:view-controller path="/claimsAddPage" view-name="/claims_v1/claimsAddPage"/>
+	<!--菜单的理赔 接口调用日志查询 -->
+	<mvc:view-controller path="/claimsBxIPage" view-name="/claims_v1/claimsBxIPage"/>
+	<!-- 菜单的理赔管理页面 -->
+	<!--<mvc:view-controller path="/claimsHandleMenuPage" view-name="/customerService/claimsHandleMenuPage"/>-->
+
+	<!-- /////////理赔保全///////// -->
+	<!-- 菜单的企业查询页面 -->
+	<!--<mvc:view-controller path="/enterpriseSearchMenuPage" view-name="/customerService/enterpriseManager"/>-->
+	<mvc:view-controller path="/baoQuanFileUploadMsg" view-name="/customerService/baoQuanFileUploadMsg"/>
+	<mvc:view-controller path="/haiNiaoWoBaoQuan" view-name="/hainiaowo/haiNiaoWoBaoQuan"/>
+
+	<!-- 人员变动通知 -->
+	<mvc:view-controller path="/enterpriseEmpChgMsg" view-name="/enterprise/enterpriseChangeMsg"/>
+	<!-- 企业添加产品页面 -->
+	<!--    <mvc:view-controller path="/enterpriseProductPage" view-name="/enterprise/enterpriseProductPage"/>-->
+
+	<mvc:view-controller path="/personPolicyCreate" view-name="/customerService/personPolicyCreate"/>
+	<!-- 车车订单导入页面-->
+	<mvc:view-controller path="/checheOrder" view-name="/cheche/checheOrder"/>
+
+	<!-- 平安导入页面-->
+	<mvc:view-controller path="/pingAnPage" view-name="/pingAn/pingAnPage"/>
+	<!-- 明亚保单导入页面-->
+	<mvc:view-controller path="/mingYaPage" view-name="/mingya/mingYaPage"/>
+	<!-- 太平保单导入页面-->
+	<mvc:view-controller path="/taiPingPage" view-name="/pingAn/taiPingPage"/>
+	<!-- 合同管理-->
+	<mvc:view-controller path="/contractManager" view-name="/enterprise/contractManager"/>
+	<mvc:view-controller path="/contractMoneyManager" view-name="/enterprise/contractMoneyManager"/>
+
+	<mvc:view-controller path="/messages" view-name="/message/messages"/>
+	<mvc:view-controller path="/responsibilityinfo" view-name="/customerService/responsibilityinfoManager"/>
+	<mvc:view-controller path="/logSearch" view-name="/customerService/logSearch"/>
+
+	<mvc:view-controller path="/schemeManager" view-name="/schemeManager/schemeManager"/>
+	<!--体检电话提醒!-->
+	<mvc:view-controller path="/examinationInfo" view-name="/physicalExamination/examinationInfo"/>
+	<!--体检项目管理!-->
+	<mvc:view-controller path="/examinationReportIndex" view-name="/physicalExamination/examinationReportIndex"/>
+	<!--<mvc:view-controller path="/createMessage" view-name="/message/createMessage"/>-->
+	<mvc:view-controller path="/insurerMenupage" view-name="/customerService/insurerMenupage"/>
+	<!--体检套餐管理-->
+	<mvc:view-controller path="/examinationProject/toExaminationProject" view-name="/physicalExamination/examinationProject"/>
+	<mvc:view-controller path="/examinationProject/packagesview" view-name="/physicalExamination/packagesView"/>
+
+	<mvc:view-controller path="/repair" view-name="/repair/repairAiKuangData"/>
+
+	<mvc:view-controller path="/youzanView" view-name="/physicalExamination/youzanManager"/>
+	<mvc:view-controller path="/orderManagement/ordermanage" view-name="/orderManagement/ordermanage"/>
+	<mvc:view-controller path="/toIframe" view-name="/physicalExamination/iframeindex"/>
+	<mvc:view-controller path="/youzan/youzanordermanage" view-name="/youzan/youzanordermanage"/>
+	<mvc:view-controller path="/youzan/youzanordermanageall" view-name="/youzan/youzanordermanageall"/>
+	<!--体检套餐价格管理-->
+	<mvc:view-controller path="/examinationProject/tjPackagePriceIndex" view-name="/physicalExamination/tjPackagePriceIndex"/>
+	<mvc:view-controller path="/examinationProject/toCreateTjPackagePrice" view-name="/physicalExamination/createTjPackagePrice"/>
+	<mvc:view-controller path="/examinationProject/packageCompanyStorefrontCount" view-name="/physicalExamination/packageCompanyStorefrontCount"/>
+
+	<!--基因管理 -->
+	<mvc:view-controller path="/jiyinManager" view-name="/physicalExamination/jiyinManager"/>
+	<!--其他健康报告-->
+	<mvc:view-controller path="/otherReportManager" view-name="/physicalExamination/otherReportManager"/>
+	<!--体检工单-->
+	<mvc:view-controller path="/medicalWorkManage" view-name="/medicalWork/medicalWorkManage"/>
+	<mvc:view-controller path="/medicalWorkSearch" view-name="/medicalWork/medicalWorkSearch"/>
+	<!--其他健康报告-->
+	<!--<mvc:view-controller path="/otherReportManager" view-name="/physicalExamination/otherReportManager"/>-->
+	<!--创建个人客户-->
+	<mvc:view-controller path="/createPersonAccount" view-name="/customerService/createPersonAccount"/>
+	<mvc:view-controller path="/dataManagerList" view-name="/dataManager/dataManagerList"/>
+	<!-- 开发环境下登陆使用 zwu 2016-10-31 -->
+	<!--体检协议 线下套餐落单成本页面-->
+	<mvc:view-controller path="/physicalExamination/toTjEnterpriseContractPackagePriceView" view-name="/physicalExamination/tjEnterpriseContractPackagePriceView"/>
+
+	<mvc:view-controller path="/insureManager" view-name="/customerService/insureManager"/>
+	<mvc:view-controller path="/api/department/departmentList" view-name="/sale/editDepartment"/>
+	<mvc:view-controller path="/api/enterpriseusercustomer/enterpriseuserManage" view-name="/sale/enterpriseuserManage"/>
+	<mvc:view-controller path="/api/enterpriseusercustomer/enterpriseuserManage/toEditEnterpriseuser" view-name="/sale/editEnterpriseuser"/>
+
+	<mvc:view-controller path="/importClaimsCloseData" view-name="/claims_v1/dataManager/importClaimsCloseData"/>
+	<!--跳转到修复责任保费的页面-->
+	<mvc:view-controller path="/bility/fixdata" view-name="/bility/fixdata"/>
+	<!--个人投保单、合同相关页面-->
+	<mvc:view-controller path="/api/personalInsurance/responsibilityinfo/toEditResponsibilityinfo" view-name="/personalInsurance/editPersonalResponsibilityinfo"/>
+	<mvc:view-controller path="/api/personalInsurance/responsibilityinfo/responsibilityinfo" view-name="/personalInsurance/personalResponsibilityinfoManage"/>
+	<mvc:view-controller path="/api/personalInsurance/policy/insurancePolicy" view-name="/personalInsurance/personalInsurancepolicy"/>
+	<mvc:view-controller path="/api/personalInsurance/policy/createPersonalInsurancepolicy" view-name="/personalInsurance/editPersonalInsurancePolicy"/>
+	<mvc:view-controller path="/api/personalInsurance/contract/insuranceContractPage" view-name="/personalInsurance/personalInsurancecontract"/>
+
+	<!-- 新增爬虫页面 -->
+	<mvc:view-controller path="/crawlerQuery" view-name="/physicalExamination/crawlerQuery"/>
+	<!--卡库渠道页面-->
+	<mvc:view-controller path="/ku/kuDealerInfo" view-name="/ku/kuDealerInfo"/>
+	<!--卡库页面-->
+	<mvc:view-controller path="/ku/kuBatchBuildCardInfo" view-name="/ku/kuBatchBuildCardInfo"/>
+
+	<!--
+
+    	Service Component等注解的支持，解析到这个标签还是默认加上@Autowired等标签的处理器
+
+        <context:annotation-config></context:annotation-config> 也会默认添加@Autowired的处理器，但是不会识别@Service组件
+
+    -->
+
+	<context:component-scan base-package="com.ypg521.tx.transaction">
+
+	</context:component-scan>
+
+	<!--
+		<aop:aspectj-autoproxy/>
+
+		即使没有这个标签，tx的解析器也会加一个proxyCreator的
+		但是就不能识别切面注解了， 只能识别切面接口
+	-->
+
+
+	<!--
+        AnnotationDrivenBeanDefinitionParser
+    -->
+
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="username" value="root"/>
+		<property name="password" value="123456"/>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/spring_test?useUnicode=true"/>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	</bean>
+
+
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.ypg521.tx.transaction.dao"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
+
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:tx/mybatis/*.xml"/>
+	</bean>
+
+
+	<!--
+
+
+        <tx:advice id="txAdvice" transaction-manager="transactionManager">
+            <tx:attributes>
+                <tx:method name="bulk*" propagation="REQUIRED" isolation="DEFAULT" />
+                <tx:method name="load*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
+            </tx:attributes>
+        </tx:advice>
+        <aop:config>
+            <aop:advisor pointcut="execution(* *..*Service*.*(..))" advice-ref="txAdvice" />
+        </aop:config>
+
+    -->
+
+	<!--
+
+
+        <aop:config>
+            <aop:pointcut id="allServiceMethods"
+                          expression="execution(* com.apress.prospring2.ch16.services.*.*(..))"/>
+            <aop:advisor advice-ref="defaultTransactionAdvice"
+                         pointcut-ref="allServiceMethods"/>
+        </aop:config>
+
+
+        <tx:advice id="defaultTransactionAdvice" transaction-manager="transactionManager">
+            <tx:attributes>
+                <tx:method
+                        name="*"
+                        isolation="DEFAULT"
+                        propagation="REQUIRED"
+                        no-rollback-for="java.lang.RuntimeException"
+                        timeout="100"/>
+                <tx:method
+                        name="get*"
+                        read-only="true"/>
+            </tx:attributes>
+        </tx:advice>
+        -->
+
+
+</beans>
